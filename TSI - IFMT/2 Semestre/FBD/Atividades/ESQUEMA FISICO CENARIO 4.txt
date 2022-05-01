@@ -1,0 +1,57 @@
+﻿-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Produto (
+ID_Produto INTEGER PRIMARY KEY,
+Descricao VARCHAR(50),
+Marca VARCHAR(25),
+Qtde_Estoque INTEGER,
+VLR_Unitario NUMERIC(6,2)
+)
+
+
+CREATE TABLE Cliente (
+ID_Cliente INTEGER PRIMARY KEY,
+Nome VARCHAR(100),
+CPF CHAR(11),
+Endereco VARCHAR(75),
+Email VARCHAR(50),
+Telefone VARCHAR(50)
+)
+
+
+CREATE TABLE Forma_Pagamento (
+ID_Forma_Pagamento INTEGER PRIMARY KEY,
+Descrição VARCHAR(25)
+)
+
+
+CREATE TABLE Compra (
+ID_Compra INTEGER PRIMARY KEY,
+ID_Cliente INTEGER,
+ID_Forma_Pagamento INTEGER,
+Caixa_Atende INTEGER,
+Dt_compra DATE,
+Horario TIME,
+VLR_Total NUMERIC(7,2),
+FOREIGN KEY(ID_Cliente) REFERENCES Cliente (ID_Cliente),
+FOREIGN KEY(ID_Forma_Pagamento) REFERENCES Forma_Pagamento (ID_Forma_Pagamento)
+)
+
+
+
+CREATE TABLE Compra_Produto (
+ID_Compra INTEGER,
+ID_Produto INTEGER,
+Qtde_Comprada INTEGER,
+VLR_Total_Item NUMERIC(6,2),
+PRIMARY KEY(ID_Compra,ID_Produto),
+FOREIGN KEY(ID_Compra) REFERENCES Compra (ID_Compra),
+FOREIGN KEY(ID_Produto) REFERENCES Produto (ID_Produto)
+)
+
+
+
+

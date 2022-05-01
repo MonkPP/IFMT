@@ -1,0 +1,121 @@
+﻿/*UPDATES E DELETES DO CENARIO-1*/
+
+UPDATE departamento
+SET telefone = '3200-9568'
+WHERE id_departamento = 3;
+
+UPDATE funcionario
+SET email = 'maripadilla@gmail.com'
+WHERE id_funcionario = 7;
+
+DELETE
+FROM funcionario
+WHERE ID_funcionario = 6;
+
+DELETE
+FROM funcionario
+WHERE nome = 'Carla Leite';
+
+
+
+---------------------------------------------------------------------
+
+/*UPDATES E DELETES DO CENARIO-2*/
+
+UPDATE paciente
+SET telefone = '(65) 99333-4444'
+WHERE cpf = '56565656565';
+
+DELETE
+FROM consulta
+WHERE id_medico = 3;
+
+UPDATE medico
+SET endereco = 'Rua ABC, Centro, Nº 21, Cuiabá-MT'
+WHERE nome = 'Marta Clemente';
+
+DELETE
+FROM medico
+WHERE especialidade = 'Cardiologia';
+
+
+
+-------------------------------------------------------------------------
+
+
+
+/*CONSULTAS CENARIO 1*/
+
+/*CONSULTA PARA SABER QUE FUNCIONARIOS DA EMPRESA TRABALHAM NO BLOCO B*/
+
+/*SELECT seleciona os campos que quero vizualizar na consulta, AS renomeia o nome da coluna na consulta*/
+SELECT 	funcionario.nome AS "Nome do Funcionario",  
+		departamento.nome AS "Nome do Departamento",
+		funcionario.email AS "Email do Funcionario",
+		departamento.telefone AS "Telefone do Departamento",
+		bloco AS "Bloco do Departamento"
+
+FROM departamento, funcionario /*as informações serão pegas destas tabelas*/
+
+WHERE departamento.id_departamento = funcionario.id_departamento /*atributo em comum que as tabelas devem ter*/
+AND bloco = 'B' /*o que um atributo deve valer para aparecer na consulta*/
+
+ORDER BY 1,2 /*coloca em ordem os dados da coluna, começando pela priemira*/
+
+
+
+--------------------------------------------------------
+/*CONSULTAS CENARIO 2*/
+
+
+/*CONSULTAR MEDICOS QUE ATENDERAM NA DATA DE 01/04/2021 E EM QUE TURNO TRABALHARAM*/
+
+SELECT 	medico.nome AS "Nome do Médico",
+		especialidade AS "Especialidade Médica",
+		dt_consulta AS "Data de Consulta",
+		turno AS "Turno"
+		
+FROM medico, consulta
+WHERE medico.id_medico = consulta.id_medico
+	AND dt_consulta = '01/04/2021'
+	
+ORDER BY 1,2
+
+
+
+
+/*CONSULTAR EXAMENS SOLICITADOS A PACIENTES COM TIPO SANGUINEO TIPO O+*/
+
+SELECT 	paciente.nome AS "Nome do paciente",
+		dt_consulta AS "Data de consulta",
+		exame_solicitado AS "Examens solicitados",
+		tp_sanguineo AS "Tipo sanguineo"
+		
+		
+FROM consulta, paciente
+WHERE paciente.id_paciente = consulta.id_paciente
+	AND tp_sanguineo = 'O+'
+
+ORDER BY 1,2
+
+
+
+/*CONSULTA PARA VISUALIZAR AS PRESCRIÇÕES (E QUE MÉDICOS FIZERAM A CONSULTA) DOS PACIENTES DO SEXO FEMININO QUE FORAM ATENDIDAS PELA CLINICA*/
+
+SELECT 	medico.nome AS "Nome do Médico",
+		paciente.nome AS "Nome do Paciente",
+		dt_consulta AS "Data da Consulta",
+		sexo AS "Sexo do Paciente",
+		prescricao AS "Prescrição"
+		
+FROM medico, consulta, paciente
+WHERE medico.id_medico = consulta.id_medico
+AND paciente.id_paciente = consulta.id_paciente
+AND sexo = 'F'
+
+ORDER BY 1,2
+
+
+
+
+

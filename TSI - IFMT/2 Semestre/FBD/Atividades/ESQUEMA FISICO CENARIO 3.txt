@@ -1,0 +1,48 @@
+﻿-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Agencia (
+ID_Agencia INTEGER PRIMARY KEY,
+Nome VARCHAR(75),
+Gerente VARCHAR(100),
+UF CHAR(2),
+Cidade VARCHAR(40),
+Endereco VARCHAR(120)
+)
+
+CREATE TABLE Conta_Corrente (
+ID_Conta_Corrente INTEGER PRIMARY KEY,
+ID_Cliente INTEGER,
+ID_Agencia INTEGER,
+Saldo_Cliente NUMERIC(11,2),
+Limite NUMERIC(11,2),
+VLR_Cheque_Especial NUMERIC(11,2),
+FOREIGN KEY(ID_Agencia) REFERENCES Agencia (ID_Agencia),
+FOREIGN KEY(ID_Cliente) REFERENCES Cliente (ID_Cliente)
+)
+
+CREATE TABLE Cliente (
+ID_Cliente INTEGER PRIMARY KEY,
+Nome VARCHAR(100),
+CPF CHAR(11),
+DT_Nasc DATE,
+UF CHAR(2),
+Cidade VARCHAR(40),
+Logradouro VARCHAR(30),
+Email VARCHAR(50),
+Telefone VARCHAR(60)
+)
+
+CREATE TABLE Emprestimo (
+ID_Emprestimo INTEGER PRIMARY KEY,
+ID_Conta_Corrente INTEGER,
+Porcen_Juros NUMERIC(4,2),
+DT_Efetivacao DATE,
+DT_Encerramento DATE,
+VLR_Parcela NUMERIC(6,2),
+FOREIGN KEY(ID_Conta_Corrente) REFERENCES Conta_Corrente (ID_Conta_Corrente)
+)
+
+

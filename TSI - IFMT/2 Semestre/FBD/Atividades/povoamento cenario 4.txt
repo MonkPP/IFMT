@@ -1,0 +1,101 @@
+/*Povoamento de 5 registros tabela Produto*/
+ 
+INSERT into produto
+(id_produto, descricao, marca, qtde_estoque, vlr_unitario)
+VALUES
+(1, 'Lápis Grafite Redondo EcoLápis n.2 B CX 12 UN', 'Faber-Castell', 203, 12.00),
+(2, 'Pincel Marcador Permanente Preto Duas Pontas Chanfrada e Redonda', 'Faber-Castell', 112, 8.76),
+(3, 'Caderno Desenho Capa Dura Happy 80 Folhas', 'Tilibra', 86, 18.50),
+(4, 'Caneta Preta Nanquim Uni Pin 0.3mm', 'Uni-Ball', 245, 29.90),
+(5, 'Pasta Fichario Oficio Escolar com 4 Argolas, Azul Pastel', 'Dello', 57, 46.50);
+
+
+
+
+
+/*Povoamento de 5 registros tabela Cliente*/
+ 
+INSERT into Cliente
+(id_cliente, nome, cpf, endereco, email, telefone)
+VALUES
+(1, 'Alba Prado', '12312312300', 'Rua A, casa nº 20, Bairro B, Cuiabá-MT', 'alba@gmail.com', '(65) 91212-0202'),
+(2, 'Carolina Buetas', '45645645600', 'Avenida E, Edificio J, Apto. 1507, Chapadas-MT', 'carol@gmail.com', '(65) 94545-5656'),
+(3, 'Júlia Pallas', '78978978900', 'Vila R, Centro, Sorriso-MT', 'julia@gmail.com', '(65) 97878-8989'),
+(4, 'Ainara Rumeo', '25825825800', 'Rua F, Bairro G, casa nº 563, Cuiabá-MT', 'ainara@gmail.com', '(65) 93636-2626'),
+(5, 'Emerson Thiago', '14714714700', 'Rua K, Bairro L, casa nº 123, Cuiabá-MT', 'emerson@gmail.com', '(65) 97852-3030');
+
+
+
+
+/*Povoamento de 5 registros tabela Forma_Pagamento*/
+INSERT into Forma_Pagamento
+(id_forma_pagamento, descrição)
+VALUES
+(1, 'dinheiro'),
+(2, 'cartão de crédito'),
+(3, 'cartão de débito'),
+(4, 'pix'),
+(5, 'tranferência bancária');
+
+
+
+
+
+/*povoamento 10 registros tabela compra*/
+INSERT into Compra
+(id_compra, id_cliente, id_forma_pagamento, caixa_atende, dt_compra, horario, vlr_total)
+VALUES
+(1, 2, 1, 1, '01/04/2021', '10:35:10', 32.76),
+(2, 1, 5, 1, '05/04/2021', '08:49:00', 64.26),
+(3, 4, 2, 2, '10/04/2021', '14:20:53', 66.90),
+(4, 3, 3, 3, '17/04/2021', '15:30:55', 7.40),
+(5, 2, 4, 4, '19/04/2021', '16:40:00', 59.42),
+(6, 5, 5, 1, '21/04/2021', '17:10:25', 83.50),
+(7, 1, 1, 2, '27/04/2021', '09:25:01', 81.54),
+(8, 3, 4, 2, '21/04/2021', '10:11:04', 12),
+(9, 5, 2, 3, '16/04/2021', '13:53:47', 78.30),
+(10, 4, 3, 2, '21/04/2021', '14:30:30', 70.50);
+
+
+
+
+/*Povoamento 20 registros na tabela Compra_Produto*/
+INSERT into Compra_Produto
+(id_compra, id_produto, qtde_comprada, vlr_total_item)
+VALUES
+(1, 1, 2, 24.00),
+(1, 2, 1, 8.76),
+(2, 2, 1, 8.76),
+(2, 3, 3, 55.50),
+(3, 3, 2, 37.00),
+(3, 4, 1, 29.90),
+(4, 4, 1, 29.90),
+(4, 5, 1, 46.50),
+(5, 1, 1, 12.00),
+(5, 4, 1, 29.90),
+(5, 2, 2, 17.52),
+(6, 3, 2, 37.00),
+(6, 5, 1, 46.50),
+(7, 2, 4, 35.04),
+(7, 5, 1, 46.50),
+(8, 1, 1, 12.00),
+(9, 4, 2, 59.80),
+(9, 3, 1, 18.50),
+(10, 5, 2, 93.00),
+(10, 1, 1, 12.00);
+	
+
+
+/*tabela dos produtos que os clientes compraram (sua unica função é esquematizar 
+o que cada cliente comprou para fazer do povoamento da tabela compra_produto mais simples)*/
+
+(1, 	carol, 	din, 1, 	'01/04/2021', 	'10:35:10', 	2lápis+marcador = 32.76),
+(2, 	alba, 	transf, 1, 	'05/04/2021', 	'08:49:00', 	marcador+3caderno = 64,26),
+(3, 	ainara, 	cre, 2, 	'10/04/2021', 	'14:20:53', 	2caderno+caneta = 66,90),
+(4, 	julia, 	deb, 3, 	'17/04/2021', 	'15:30:55', 	caneta + pasta = 76,40),
+(5, 	carol, 	pix, 4, 	'19/04/2021', 	'16:40:00', 	lápis+caneta+2marcador = 59,42),
+(6, 	emers, 	transf, 1, 	'21/04/2021', 	'17:10:25', 	2caderno + pasta = 83,50),
+(7, 	alba, 	din, 2, 	'27/04/2021', 	'09:25:01', 	4marcador+pasta= 81,54),
+(8, 	julia, 	pix, 2, 	'21/04/2021', 	'10:11:04', 	lápis = 12),
+(9, 	emers, 	cre, 3, 	'16/04/2021', 	'13:53:47', 	2caneta + caderno = 78,30),
+(10, 	aina, 	deb, 2, 	'21/04/2021', 	'14:30:30', 	2pasta + lápis = 70,5);

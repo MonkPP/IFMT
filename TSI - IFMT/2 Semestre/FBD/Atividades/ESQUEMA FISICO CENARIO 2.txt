@@ -1,0 +1,39 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE Medico (
+ID_Medico INTEGER PRIMARY KEY,
+Nome VARCHAR(100),
+CRM VARCHAR(10),
+Especialidade VARCHAR(40),
+Turno CHAR(1),
+Endereco VARCHAR(120),
+Telefone VARCHAR(40),
+Email VARCHAR(50)
+)
+
+CREATE TABLE Consulta (
+ID_Consulta INTEGER PRIMARY KEY,
+ID_Medico INTEGER,
+ID_Paciente INTEGER,
+DT_Consulta DATE,
+Diagnostico VARCHAR(250),
+Exame_Solicitado VARCHAR(250),
+Prescricao VARCHAR(250),
+FOREIGN KEY(ID_Medico) REFERENCES Medico (ID_Medico),
+FOREIGN KEY(ID_Paciente) REFERENCES Paciente (ID_Paciente)
+)
+
+CREATE TABLE Paciente (
+ID_Paciente INTEGER PRIMARY KEY,
+Nome VARCHAR(100),
+CPF CHAR(11),
+DT_Nasc DATE,
+Sexo CHAR(1),
+TP_Sanguineo VARCHAR(3),
+Endereco VARCHAR(120),
+Telefone VARCHAR(60)
+)
+
