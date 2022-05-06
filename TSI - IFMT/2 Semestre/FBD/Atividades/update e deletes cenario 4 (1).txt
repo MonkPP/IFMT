@@ -1,0 +1,107 @@
+SELECT *
+FROM compra
+WHERE id_compra = 1
+
+SELECT SUM(vlr_total_item)
+FROM compra_produto
+WHERE id_compra = 1
+
+-------------- TRANSFORMAR EM UMA LINHA O SELECT DE CIMA
+SELECT SUM(vlr_total item) FROM compra_produto WHERE id_compra = 1
+
+UPDATE compra
+SET vlr_total = (SELECT SUM(vlr_total item) FROM compra_produto WHERE id_compra = 1);
+
+
+
+
+
+select sum(vlr_total_item)
+from compra_produto
+where id_compra = 1
+
+
+ALTER TABLE forma_pagamento RENAME COLUMN descrição TO descricao;
+
+
+
+
+/*CONSULTAS CENARIO 4*/
+
+/*CONSULTA PARA SABER QUANTO DINHEIRO UM CLIENTE GASTOU E QUANDO E COMO FOI FEITO A PAGAMENTO*/
+
+
+/*SELECT seleciona os campos que quero vizualizar na consulta, AS renomeia o nome da coluna na consulta*/
+
+SELECT 	cliente.nome AS "Nome do Cliente",
+		forma_pagamento.descricao AS "Forma de Pagamento",
+		vlr_total AS "Valor da Compra",		
+		dt_compra AS "Data da Compra"
+
+FROM cliente, compra, forma_pagamento /*as informações serão pegas destas tabelas*/
+
+WHERE cliente.id_cliente = compra.id_cliente /*atributo em comum que as tabelas devem ter*/
+AND compra.id_forma_pagamento = forma_pagamento.id_forma_pagamento
+
+ORDER BY 1,2 /*coloca em ordem os dados da coluna, começando pela primeira*/
+
+
+
+
+
+/*CONSULTA PARA SABER OS PRODUTOS VENDIDOS NO MÊS DE ABRIL(ORGANIZADO PELA DATA)*/
+/*SELECT seleciona os campos que quero vizualizar na consulta, AS renomeia o nome da coluna na consulta*/
+SELECT 	
+		compra.dt_compra AS "Data da compra",
+		produto.descricao AS "Descrição do Produto",
+		compra_produto.qtde_comprada AS "Quantidade comprada",
+		produto.vlr_unitario AS "Valor Unitário",
+		compra_produto.vlr_total_item AS "Valor total do item"
+		
+FROM produto, compra, compra_produto /*as informações serão pegas destas tabelas*/
+
+WHERE produto.id_produto = compra_produto.id_produto /*atributo em comum que as tabelas devem ter*/
+AND compra.id_compra = compra_produto.id_compra
+
+ORDER BY 1,2 /*coloca em ordem os dados da coluna, começando pela primeira*/
+
+
+
+
+/*CONSULTA PARA VER OS PRODUTOS VENDIDOS NO TOTAL*/
+/*SELECT seleciona os campos que quero vizualizar na consulta, AS renomeia o nome da coluna na consulta*/
+SELECT 	produto.descricao AS "Descrição do Produto",
+		--compra.dt_compra AS "Data da compra",
+		SUM(compra_produto.qtde_comprada) AS "Quantidade comprada",
+		--produto.vlr_unitario AS "Valor Unitário",
+		SUM(compra_produto.vlr_total_item) AS "Lucro"
+		
+FROM produto, compra, compra_produto /*as informações serão pegas destas tabelas*/
+
+WHERE produto.id_produto = compra_produto.id_produto /*atributo em comum que as tabelas devem ter*/
+AND compra.id_compra = compra_produto.id_compra
+group by produto.descricao
+
+ORDER BY 1,2 /*coloca em ordem os dados da coluna, começando pela primeira*/
+
+
+
+
+
+
+/*CONSULTA para saber em que caixas foi comprado material da fabercastell*/
+SELECT 	compra.caixa_atende AS "Caixa",
+		cliente.nome AS "Nome do Cliente",
+		produto.descricao AS "Produto",
+		produto.marca AS "Marca",
+		compra_produto.qtde_comprada AS "Quantidade",
+		vlr_total_item AS "Valor total do item"
+		
+FROM produto, compra, compra_produto, cliente
+
+WHERE 	compra.id_cliente = cliente.id_cliente
+	AND 	produto.id_produto = compra_produto.id_produto
+	AND 	compra.id_compra = compra_produto.id_compra
+	AND 	marca = 'Faber-Castell'
+	
+ORDER BY 1,2 
