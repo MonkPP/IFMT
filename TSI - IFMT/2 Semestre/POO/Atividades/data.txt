@@ -1,9 +1,0 @@
-public class Data{
-    int dia;
-    int mes;
-    int ano;
-    
-    void configuraData (int dia, int mes, int ano) {
-        System.out.println(dia + "/" + mes + "/" + ano);
-    }
-}
