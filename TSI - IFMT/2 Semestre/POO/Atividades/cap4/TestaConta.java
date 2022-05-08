@@ -66,9 +66,9 @@ public class TestaConta {
         Conta c20 = new Conta();
         Data data20 = new Data();
         c20.dataDeAbertura = data20;
-        data20.informaData(12, 11, 2013);
+        data20.informaData(21, 10, 2000);
         
-        c10.recuperaDadosParaImpressao();
+        c20.recuperaDadosParaImpressao();
         
         
         

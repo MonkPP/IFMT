@@ -16,7 +16,7 @@ public class Data{
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);*/
    
    
-   // String formatada(){
-      //  return this.dia + "/" + this.mes + "/" + this.ano;
-    //}
+    public String formatada(){
+        return this.dia + "/" + this.mes + "/" + this.ano;
+    }
 }

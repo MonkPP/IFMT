@@ -29,6 +29,17 @@ public class Conta {
         System.out.println("Rendimento mensal de: " + rendimento + " R$");
     }
     
+    /*//outra alternativa para exercicio 3, refiz pra dar certo o exercicio 9
+
+    public String recuperaDadosParaImpressao() {
+
+
+    }*/
+
+
+
+
+     //exercicio 3
     public void recuperaDadosParaImpressao() {
         System.out.println("\nTitular: " + this.titular);
         System.out.println("Número: " + this.numero);
@@ -42,8 +53,8 @@ public class Conta {
         System.out.println("Ano de abertura: " + this.dataDeAbertura.ano);*/
         
         //exercicio 9
-        //System.out.println(this.dataDeAbertura.formatada);
-        System.out.println("Data de abertura: " + this.dataDeAbertura.dia + "/" + this.dataDeAbertura.mes + "/" + this.dataDeAbertura.ano);
+        System.out.println( "Data de Abertura: " + this.dataDeAbertura.formatada());
+       // System.out.println("Data de abertura: " + this.dataDeAbertura.dia + "/" + this.dataDeAbertura.mes + "/" + this.dataDeAbertura.ano);
         
     }
     

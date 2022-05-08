@@ -1,0 +1,22 @@
+Nome do aluno: Monyk Paola Penafor
+Tema: Cursos presenciais de uma instituição. 
+
+
+
+O que fazer? 
+Criar um banco de dados que armazene informações dos alunos, professores, turmas, para uma empresa que oferece cursos variados. 
+
+
+Justificativa (por que fazer)? 
+Para guardar e organizar os dados dos alunos/professores e facilitar na visualização das turmas, assim como manter registro dos cursos realizados, do uso das salas e equipamentos.
+
+
+Quais funcionalidades e requisitos necessitam ser contemplados?
+Este banco de dados deve ter cinco entidades(aluno/turma/professor/sala/curso), matriculas de alunos menores de 18 anos devem ser assinadas pelo responsável. 
+
+
+Existem algumas restrições?
+Não podem ser matriculados alunos menores de 12 anos.
+
+Qual o público-alvo?
+Microempresas que proporcionam cursos presenciais. 
