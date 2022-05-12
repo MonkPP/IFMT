@@ -4,23 +4,7 @@ public class Conta {
     private String agencia;
     private double saldo;
     private Data dataDeAbertura;
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+       
     private static int idConta;
     private int idObejto;
     

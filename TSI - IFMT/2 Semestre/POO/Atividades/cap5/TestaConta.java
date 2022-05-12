@@ -51,5 +51,7 @@ public class TestaConta {
 
         //System.out.println(c2.getIdObjeto());
 
+        System.out.println(c2.getIdObjeto());
+
     }    
 }
